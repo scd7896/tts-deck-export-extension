@@ -31,6 +31,7 @@ class DeckExporterCRB implements IDeckExporter {
       cardWidth: 409,
       cardHeight: 585,
       outputType: "image/jpg",
+      outputQuality: 0.6,
     });
   }
 }

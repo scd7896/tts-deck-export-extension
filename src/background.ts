@@ -6,13 +6,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     chrome.tabs.sendMessage(tab.id, msg, (response) => {
+      console.log("response", response?.type, response?.payload);
       if (chrome.runtime.lastError) {
-        console.warn("sendMessage failed:", chrome.runtime.lastError.message);
+        sendResponse({ ...msg, isError: true });
         return;
       }
+
       sendResponse(response);
     });
   });
+  return true;
 });
 
 function isHttp(url?: string) {

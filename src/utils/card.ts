@@ -4,20 +4,19 @@
  */
 export async function buildDeckImage(
   cardImages: (string | Blob)[],
-  options: DeckBuilderOptions
+  options: DeckBuilderOptions,
 ): Promise<Blob> {
   const {
     columns,
     rows,
     cardWidth,
     cardHeight,
-    outputType = "image/png",
+    outputType = "image/jpg",
     outputQuality = 0.92,
   } = options;
 
   const maxCards = columns * rows;
   const images = cardImages.slice(0, maxCards);
-  console.log(images);
 
   // 1️⃣ 이미지 로드
   const loadedImages = await Promise.all(images.map(loadImage));
@@ -44,7 +43,7 @@ export async function buildDeckImage(
       col * cardWidth,
       row * cardHeight,
       cardWidth,
-      cardHeight
+      cardHeight,
     );
   });
 
@@ -58,7 +57,7 @@ export async function buildDeckImage(
         resolve(blob);
       },
       outputType,
-      outputType === "image/webp" ? outputQuality : undefined
+      outputType === "image/webp" ? outputQuality : undefined,
     );
   });
 }
