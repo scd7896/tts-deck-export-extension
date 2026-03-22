@@ -12,9 +12,10 @@ class DeckExporterCRB implements IDeckExporter {
     const cardUrls: string[] = [];
 
     const insertCardUrls = (src: string) => {
-      if (src.includes("storage")) {
-        cardUrls.push(src);
-      }
+      if (src.includes("https://cookierunbraverse.com/public/images/common"))
+        return;
+
+      cardUrls.push(src);
     };
 
     mainCards?.forEach((item) => {
