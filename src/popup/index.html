@@ -1,7 +1,43 @@
 <!doctype html>
-<html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TCG Deck Exporter</title>
+  </head>
   <body>
-    <button id="download-button" disabled>Downloads Deck</button>
+    <div class="popup_root">
+      <button id="download-button" disabled>덱 이미지 다운로드</button>
+      <div class="deck_image_wrapper">
+        <section class="preview_panel">
+          <div class="panel_header">
+            <h2 class="panel_title">덱 시트</h2>
+            <button id="toggle-deck-button" class="ghost_button" type="button">
+              접기
+            </button>
+          </div>
+          <div class="deck_image_body">
+            <img class="deck_image" />
+          </div>
+        </section>
+      </div>
+      <section class="preview_panel draw_panel">
+        <div class="panel_header">
+          <h2 class="panel_title">드로우 시뮬레이터</h2>
+          <div class="draw_summary">
+            <span class="draw_count">0장 드로우됨</span>
+          </div>
+        </div>
+        <div class="draw_card_frame">
+          <div class="draw_controls_overlay">
+            <button id="draw-button" disabled>1장 드로우</button>
+            <button id="reset-button" disabled>리셋</button>
+          </div>
+          <div class="drawn_cards"></div>
+          <p class="draw_placeholder">아직 뽑은 카드가 없습니다.</p>
+        </div>
+      </section>
+    </div>
     <script type="module" src="./popup.ts"></script>
   </body>
 </html>

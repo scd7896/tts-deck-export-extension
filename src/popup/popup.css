@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+}
+
+.popup_root {
+  padding: 16px;
+  width: 780px;
+  min-width: 780px;
+  background: #f3f4f6;
+  color: #111827;
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+
+.deck_image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+.deck_image_wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 360px);
+  margin-top: 12px;
+}
+
+.preview_panel {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.panel_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel_title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.deck_image_body {
+  margin-top: 10px;
+}
+
+.draw_panel {
+  margin-top: 12px;
+}
+
+.draw_summary {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.draw_count {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.draw_card_frame {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 190px;
+  max-height: 420px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 1) 0%,
+    rgba(241, 245, 249, 1) 100%
+  );
+  overflow-y: auto;
+}
+
+.draw_controls_overlay {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px;
+  margin: -12px -12px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px 12px 0 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.drawn_cards {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.drawn_card {
+  width: 100%;
+  display: block;
+  aspect-ratio: 409 / 585;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.16);
+}
+
+.draw_placeholder {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  line-height: 1.5;
+  color: #64748b;
+  font-size: 13px;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+#download-button {
+  width: 100%;
+}
+
+.ghost_button {
+  padding: 8px 12px;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.ghost_button:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+}
+
+@media (max-width: 520px) {
+  .drawn_cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .draw_controls_overlay {
+    position: static;
+    margin-bottom: 12px;
+    margin-left: 0;
+    margin-right: 0;
+    width: fit-content;
+  }
+}

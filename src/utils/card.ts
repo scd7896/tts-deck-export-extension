@@ -1,3 +1,8 @@
+export const CARD_WIDTH = 409;
+export const CARD_HEIGHT = 585;
+export const CARD_COLUMNS = 10;
+export const CARD_ROWS = 7;
+
 /**
  * WebP 카드 이미지 리스트를
  * Tabletop Simulator DeckBuilder용 카드 시트로 변환
@@ -6,16 +11,9 @@ export async function buildDeckImage(
   cardImages: (string | Blob)[],
   options: DeckBuilderOptions,
 ): Promise<Blob> {
-  const {
-    columns,
-    rows,
-    cardWidth,
-    cardHeight,
-    outputType = "image/jpg",
-    outputQuality = 0.92,
-  } = options;
+  const { outputType = "image/jpg", outputQuality = 0.92 } = options;
 
-  const maxCards = columns * rows;
+  const maxCards = CARD_COLUMNS * CARD_ROWS;
   const images = cardImages.slice(0, maxCards);
 
   // 1️⃣ 이미지 로드
@@ -23,8 +21,8 @@ export async function buildDeckImage(
 
   // 2️⃣ 캔버스 생성
   const canvas = document.createElement("canvas");
-  canvas.width = columns * cardWidth;
-  canvas.height = rows * cardHeight;
+  canvas.width = CARD_COLUMNS * CARD_WIDTH;
+  canvas.height = CARD_ROWS * CARD_HEIGHT;
 
   const ctx = canvas.getContext("2d");
   if (!ctx) {
@@ -33,17 +31,17 @@ export async function buildDeckImage(
 
   // 3️⃣ 카드 배치 (간격 0)
   loadedImages.forEach((img, index) => {
-    const col = index % columns;
-    const row = Math.floor(index / columns);
+    const col = index % CARD_COLUMNS;
+    const row = Math.floor(index / CARD_COLUMNS);
 
-    if (row >= rows) return;
+    if (row >= CARD_ROWS) return;
 
     ctx.drawImage(
       img,
-      col * cardWidth,
-      row * cardHeight,
-      cardWidth,
-      cardHeight,
+      col * CARD_WIDTH,
+      row * CARD_HEIGHT,
+      CARD_WIDTH,
+      CARD_HEIGHT,
     );
   });
 
@@ -79,10 +77,6 @@ function loadImage(source: string | Blob): Promise<HTMLImageElement> {
 }
 
 export type DeckBuilderOptions = {
-  columns: number;
-  rows: number;
-  cardWidth: number;
-  cardHeight: number;
   outputType?: string; // e.g., "image/png", "image/webp"
   outputQuality?: number; // 0 to 1, for image/webp
 };

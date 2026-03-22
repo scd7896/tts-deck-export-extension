@@ -26,10 +26,6 @@ class DeckExporterCRB implements IDeckExporter {
 
     // Create the deck image using the collected card URLs
     return buildDeckImage(cardUrls, {
-      columns: 10,
-      rows: 7,
-      cardWidth: 409,
-      cardHeight: 585,
       outputType: "image/jpg",
       outputQuality: 0.6,
     });
